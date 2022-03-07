@@ -5,6 +5,9 @@ const router = Router();
 
 router.get('/', notesCtrl.index);
 router.get('/create', notesCtrl.create);
+router.get("/:id", notesCtrl.show);
+
+
 
 export {
   router
