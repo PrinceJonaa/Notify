@@ -18,10 +18,20 @@ function create(req, res) {
   res.render("notes/create", { title: "Create a Note" });
 }
 
-
+function deleteNote (req, res) {
+  Note.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.redirect("/notes");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect("/notes");
+    });
+}
 
 
 export {
   index,
-  create
+  create,
+  deleteNote,
 }
