@@ -1,16 +1,24 @@
 <%- include('./partials/html-head') %>
 <%- include('./partials/nav') %>
 
-<main>
-  <h1>hello, <%= user ? user.profile.name : "friend" %></h1>
-  <% if (user?.profile.avatar) { %>
-    <div>
-      <img
-        src="<%= user.profile.avatar %>"
-        alt="<%= user.profile.name %> avatar"
-      />
+<div class="container">
+  <div class="i2">
+    <div class="nav"></div>
+    <div class="User-Note-Area"></div>
+    <div class="Main-Area"></div>
+    <div class="Light\/Dark"></div>
+    <div class="Page-Title">
+      <h1>hello, <%= user ? user.profile.name : "friend" %></h1>
+      <% if (user?.profile.avatar) { %>
+      <div>
+        <img src="<%= user.profile.avatar %>" alt="<%= user.profile.name %> avatar" />
+      </div>
+      <% } %>
     </div>
-  <% } %>
-</main>
+    <div class="Note-Title"> User Notes </div>
+  </div>
+</div>
+
 
 <%- include('./partials/footer') %>
+  
