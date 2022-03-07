@@ -14,6 +14,14 @@ function index(req, res) {
     });
 }
 
+function create(req, res) {
+  res.render("notes/create", { title: "Create a Note" });
+}
+
+
+
+
 export {
-  index
+  index,
+  create
 }
