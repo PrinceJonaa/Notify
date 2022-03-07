@@ -29,9 +29,21 @@ function deleteNote (req, res) {
     });
 }
 
+function show (req, res) {
+  Note.findById(req.params.id)
+    .then((note) => {
+      res.render("notes/show", { note, title: "Note" });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect("/notes");
+    });
+}
+
 
 export {
   index,
   create,
   deleteNote,
+  show,
 }
