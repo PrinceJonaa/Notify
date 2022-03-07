@@ -1,13 +1,13 @@
 <%- include('./partials/html-head') %>
-<link rel="stylesheet" href="public/stylesheets/index1.css">
+<link rel="stylesheet" href="/public/stylesheets/index1.css">
 <%- include('./partials/nav') %>
 
 <div class="container">
   <div class="i2">
-    <div class="nav"></div>
-    <div class="User-Note-Area"></div>
-    <div class="Main-Area"></div>
-    <div class="Light\/Dark"></div>
+    <div class="nav">nav</div>
+    <div class="User-Note-Area">user note area</div>
+    <div class="Main-Area">main area</div>
+    <div class="Light\/Dark"><button>Light Dark</button></div>
     <div class="Page-Title">
       <h1>hello, <%= user ? user.profile.name : "friend" %></h1>
       <% if (user?.profile.avatar) { %>
