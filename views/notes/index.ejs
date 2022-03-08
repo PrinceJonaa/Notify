@@ -1,0 +1,13 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+
+<% notes.forEach(note => { %>
+  <div class="note">
+    <h2><%= note.title %></h2>
+    <h4><%= note.owner.name %></h4>
+    <p><%= note.body %></p>
+  </div>
+  <% }) %>
+
+  <%- include('../partials/footer') %>
