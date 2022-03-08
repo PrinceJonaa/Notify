@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import * as notesCtrl from '../controllers/notes.js';
+import { isLoggedIn } from "../middleware/middleware.js";
 
 const router = Router();
 
 router.get('/', notesCtrl.index);
-router.get('/create', notesCtrl.create);
 router.get("/:id", notesCtrl.show);
-router.post("/", notesCtrl.create);
+router.post("/", isLoggedIn, notesCtrl.create);
 
 
 export {

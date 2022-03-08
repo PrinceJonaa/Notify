@@ -3,7 +3,7 @@ import { Note } from "../models/note.js";
 function index(req, res) {
   Note.find({})
     .then((notes) => {
-      res.render("tacos/index", {
+      res.render("notes/index", {
         notes,
         title: "List of Notes",
       });
@@ -15,7 +15,15 @@ function index(req, res) {
 }
 
 function create(req, res) {
-  res.render("notes/create", { title: "Create a Note" });
+  req.body.owner = req.user.profile.id;
+  Note.create(req.body)
+    .then((note) => {
+      res.redirect("/notes");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect("/notes");
+    });
 }
 
 function deleteNote (req, res) {
