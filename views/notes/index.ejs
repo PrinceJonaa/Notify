@@ -4,21 +4,17 @@
 <%- include('../partials/nav') %>
 
 
-<% notes.forEach(note => { %>
-  <div class="note">
-    <h2><%= note.title %></h2>
-    <h4><%= note.owner.name %></h4>
-    <p><%= note.body %></p>
-  </div>
-  <% }) %>
-
+<% notes.forEach(note => { %>  
   <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title"><%= note.title %> </h5>
-      <p class="card-text">Created by <%= note.owner.name %></p>
-      <a href="/note/<%= note.id %>" class="btn btn-primary">Open Note</a>
+      <h6 class="card-subtitle mb-2 text-muted">Created by <%= note.owner %></h6>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+        content.</p>
+      <a href="/notes/<%= note._id %>" class="card-link" method="GET">Card link</a>
+      <a href="/notes/<%= note._id %>" class="card-link" method="DELETE">Delete note</a>
     </div>
   </div>
+  <% }) %>
 
   <%- include('../partials/footer') %>

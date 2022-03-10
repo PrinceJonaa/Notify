@@ -5,7 +5,8 @@ import { isLoggedIn } from "../middleware/middleware.js";
 const router = Router();
 
 router.get('/', notesCtrl.index);
-router.get("/:id", notesCtrl.show);
+router.get('/new', isLoggedIn, notesCtrl.new);
+router.get("/:id", notesCtrl.delete);
 router.post("/", isLoggedIn, notesCtrl.create);
 
 

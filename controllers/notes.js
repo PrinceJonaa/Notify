@@ -1,4 +1,6 @@
 import { Note } from "../models/note.js";
+import { Profile } from "../models/profile.js";
+import { User } from "../models/user.js";
 
 function index(req, res) {
   Note.find({})
@@ -6,6 +8,7 @@ function index(req, res) {
       res.render("notes/index", {
         notes,
         title: "List of Notes",
+        Profile,
       });
     })
     .catch((err) => {
@@ -14,11 +17,25 @@ function index(req, res) {
     });
 }
 
+function newNote(req, res) {
+  Note.find({})
+  .then(notes => {
+  res.render('notes/new', {
+    title: 'New Note',
+  });
+  })
+  .catch(err => {
+  console.log(err);
+  res.redirect('/notes')
+  }
+  );
+}
+
 function create(req, res) {
   req.body.owner = req.user.profile.id;
   Note.create(req.body)
-    .then((note) => {
-      res.redirect("/notes");
+    .then((notes) => {
+      res.redirect("/notes/new");
     })
     .catch((err) => {
       console.log(err);
@@ -52,6 +69,7 @@ function show (req, res) {
 export {
   index,
   create,
-  deleteNote,
+  deleteNote as delete,
   show,
+  newNote as new,
 }

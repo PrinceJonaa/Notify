@@ -4,6 +4,10 @@
 </head>
 <body>
   <nav>
+    <button type="button" class="home"
+      onclick="window.location.href='/'">
+      <img src="/images/book-fill.svg" alt="Logo" />
+    </button>
     <% if (user) { %>
       <a href="/auth/logout">
         <button type="submit">Logout</button>
