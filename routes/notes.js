@@ -6,8 +6,9 @@ const router = Router();
 
 router.get('/', notesCtrl.index);
 router.get('/new', isLoggedIn, notesCtrl.new);
-router.get("/:id", notesCtrl.delete);
+router.delete("/:id", notesCtrl.delete);
 router.post("/", isLoggedIn, notesCtrl.create);
+router.get('/:id', notesCtrl.show);
 
 
 export {

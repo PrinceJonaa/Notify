@@ -2,10 +2,9 @@
 <%- include('../partials/nav') %>
 
 <section>
-  <h1>Note</h1>
+  <h1><%= note.title %></h1>
+  <h4><%= note.owner.name %></h4>
   <div class="note">
-    <h2><%= note.title %></h2>
-    <h4><%= note.owner.name %></h4>
     <p><%= note.body %></p>
   </div>
 </section>

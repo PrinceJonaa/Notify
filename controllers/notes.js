@@ -1,6 +1,5 @@
 import { Note } from "../models/note.js";
 import { Profile } from "../models/profile.js";
-import { User } from "../models/user.js";
 
 function index(req, res) {
   Note.find({})
@@ -35,7 +34,7 @@ function create(req, res) {
   req.body.owner = req.user.profile.id;
   Note.create(req.body)
     .then((notes) => {
-      res.redirect("/notes/new");
+      res.redirect("/notes/index");
     })
     .catch((err) => {
       console.log(err);
@@ -56,6 +55,7 @@ function deleteNote (req, res) {
 
 function show (req, res) {
   Note.findById(req.params.id)
+  .populate('owner')
     .then((note) => {
       res.render("notes/show", { note, title: "Note" });
     })
