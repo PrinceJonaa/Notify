@@ -11,6 +11,8 @@ const noteSchema = new mongoose.Schema({
 , 
 {
   timestamps: true,
+  comment: { type: Schema.Types.ObjectId, ref: "Comment"},
+  isInteresting: { type: Boolean, default: false }
 });
 
 

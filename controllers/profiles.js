@@ -6,7 +6,7 @@ function show(req, res) {
       Profile.findById(req.user.profile._id).then((self) => {
         const isSelf = self._id.equals(profile._id);
         res.render("profiles/show", {
-          title: `🐱 ${profile.name}'s profile`,
+          title: ` ${profile.name}'s profile`,
           profile,
           isSelf,
         });
