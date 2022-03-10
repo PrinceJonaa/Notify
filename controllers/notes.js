@@ -31,25 +31,32 @@ function newNote(req, res) {
 }
 
 function create(req, res) {
-  req.body.owner = req.user.profile.id;
-  Note.create(req.body)
-    .then((notes) => {
-      res.redirect("/notes/index");
+  req.body.owner = req.user.profile._id
+  Profile.findById(req.user.profile._id)
+  .then(profile => {
+    profile.cats.push(req.body)
+    profile.save()
+    .then(() => {
+      res.redirect(`/profiles/${req.user.profile._id}`)
     })
-    .catch((err) => {
-      console.log(err);
-      res.redirect("/notes");
-    });
+    .catch(err => {
+      console.log(err)
+      res.redirect(`/profiles/${req.user.profile._id}`)
+    })
+  })
 }
 
-function deleteNote (req, res) {
-  Note.findByIdAndDelete(req.params.id)
-    .then(() => {
-      res.redirect("/notes");
+function deleteNote(req, res) {
+  Profile.findById(req.params.profileId)
+    .then((profile) => {
+      profile.cats.remove({ _id: req.params.catId });
+      profile.save().then(() => {
+        res.redirect(`/profiles/${req.user.profile._id}`);
+      });
     })
     .catch((err) => {
       console.log(err);
-      res.redirect("/notes");
+      res.redirect(`/profiles/${req.user.profile._id}`);
     });
 }
 
