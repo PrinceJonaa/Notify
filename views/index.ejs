@@ -1,5 +1,4 @@
 <%- include('./partials/html-head') %>
-<link rel="stylesheet" href="/stylesheets/index1.css">
 <%- include('./partials/nav') %>
 
       <h1>hello, <%= user ? user.profile.name : "friend" %></h1>
@@ -8,8 +7,6 @@
         <img src="<%= user.profile.avatar %>" alt="<%= user.profile.name %> avatar" />
       </div>
       <% } %>
-      <a href="/notes/index">View all notes</a>
-
-
+      
 <%- include('./partials/footer') %>
   
