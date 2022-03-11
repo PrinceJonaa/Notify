@@ -16,7 +16,7 @@
     <a href="https://github.com/PrinceJonaa/Notify"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/PrinceJonaa/Notify">View Demo</a>
+    <a href="http://notify-app-1.herokuapp.com">View Demo</a>
     ·
     <a href="https://github.com/PrinceJonaa/Notify/issues">Report Bug</a>
     ·
