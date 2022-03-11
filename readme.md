@@ -11,7 +11,7 @@
 <h3 align="center">Notify</h3>
 
   <p align="center">
-    Create, Save, and Save Notes with others
+    Create, Save, and edit Notes with others
     <br />
     <a href="https://github.com/PrinceJonaa/Notify"><strong>Explore the docs »</strong></a>
     <br />
