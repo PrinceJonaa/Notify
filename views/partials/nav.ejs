@@ -1,55 +1,78 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-light navbar-light">
+    <!-- Container wrapper -->
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Notify</a>
-      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="/">Notify</a>
+
+      <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- Link -->
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/notes">Notes</a>
+            <a class="nav-link" href="/notes">All Notes</a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="/profiles">Profiles</a>
+            <a class="nav-link" href="/profiles">All Authors</a>
           </li>
-          <li class="nav-item me-3 me-lg-0 dropdown">
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
               aria-expanded="false">
-              <i class="fas fa-user"></i>
+              Settings
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <% if (user) { %>
-              <li>
-                <a class="dropdown-item" href="/notes/new">Create a note</a>
-              </li>
+              <li><a class="dropdown-item" href="/notes/new">Create a Note</a></li>
               <% } else { %>
-              <li>
-                <a class="dropdown-item" href="/auth/google">Create a note</a>
-              </li>
+              <li><a class="dropdown-item" href="/auth/google">Create a Note</a></li>
               <% } %>
-              <li>
-                <a class="dropdown-item" href="#">Your Profile</a>
-              </li>
+              <% if (user) { %>
+              <li><a class="dropdown-item" href="/profile/">View Own Profile</a></li>
+              <% } else { %>
+              <li><a class="dropdown-item" href="/auth/google">View Own Profile</a></li>
+              <% } %>
               <li>
                 <hr class="dropdown-divider" />
               </li>
               <% if (user) { %>
-              <li>
-                <a class="dropdown-item" href="/auth/logout">Log out</a>
-              </li>
+              <li><a class="dropdown-item" href="/auth/logout">Log out</a></li>
               <% } else { %>
-              <li>
-                <a class="dropdown-item" href="/auth/google">Log in (Google)</a>
-              </li>
+              <li><a class="dropdown-item" href="/auth/google">Log In (Google)</a></li>
               <% } %>
             </ul>
+          </li>
+        </ul>
+
+        <!-- Icons -->
+        <ul class="navbar-nav d-flex flex-row me-1">
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link" href="#"><i class="fab fa-twitter"></i></a>
+          </li>
+        </ul>
+        <!-- Search -->
+        <form class="w-auto">
+          <input type="search" class="form-control" placeholder="Search" aria-label="Search" />
+        </form>
       </div>
     </div>
+    <!-- Container wrapper -->
   </nav>
+  <!-- Navbar -->

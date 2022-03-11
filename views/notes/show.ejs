@@ -5,8 +5,13 @@
   <h1><%= note.title %></h1>
   <h4><%= note.owner.name %></h4>
   <div class="note">
-    <p><%= note.body %></p>
+    <p><%= note.content %></p>
   </div>
+  <form action="/notes/<%= note._id %>?_method=DELETE" method="POST">
+    <button class="btn btn-primary" type="submit">Delete Note</button>
+  </form>
 </section>
+
+
 
 <%- include('../partials/footer') %>

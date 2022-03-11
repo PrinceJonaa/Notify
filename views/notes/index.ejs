@@ -4,25 +4,28 @@
 <%- include('../partials/nav') %>
 
 <section>
+  <div class="container-md">
+    <h1> All Notes </h1>
+    <% if (user) { %>
+    <a href="/notes/new">Create a new note</a>
+    <% } %>
+  </div>
 
-  <h1> All Notes </h1>
-  <% if (user) { %>
-  <a href="/notes/new">Create a new note</a>
-  <% } %>
-
-<% notes.forEach(note => { %>  
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title"><%= note.title %> </h5>
-      <h6 class="card-subtitle mb-2 text-muted">Created by <%= note.owner %></h6>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-        content.</p>
-      <a href="/notes/<%= note._id %>" class="card-link" method="GET">Show Note</a>
-      <a href="/notes/<%= note._id %>" class="card-delete" method="DELETE">Delete note</a>
+  <div class="row mt-1">
+    <% note.forEach(note => { %>
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= note.title %> </h5>
+          <h6 class="card-subtitle mb-2 text-muted">Created by <%= note.owner.name %></h6>
+          <p class="card-text"><%= note.bio %></p>
+          <a href="/notes/<%= note._id %>" class="card-link" method="GET">Show Note</a>
+        </div>
+      </div>
     </div>
   </div>
   <% }) %>
 
-  </section>
+</section>
 
-  <%- include('../partials/footer') %>
+<%- include('../partials/footer') %>
