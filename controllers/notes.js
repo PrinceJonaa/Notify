@@ -32,7 +32,8 @@ function newNote(req, res) {
 
 function create(req, res) {
   req.body.owner = req.user.profile._id;
-  Note.findById(req.user.profile._id);
+  Note.findById(req.user.profile._id)
+  .populate('owner')
   Note.create(req.body)
     .then((notes) => {
       res.redirect("/notes");
@@ -41,6 +42,17 @@ function create(req, res) {
       console.log(err);
       res.redirect("/notes");
     });
+}
+
+function createComment(req, res) {
+  req.body.owner = req.user.profile._id;
+  Note.findById(req.params.id, function (err, note) {
+    
+    note.comments.push(req.body);
+    note.save(function (err) {
+      res.redirect(`/notes/${note._id}`);
+    });
+  });
 }
 
 function deleteNote(req, res) {
@@ -60,22 +72,12 @@ function deleteNote(req, res) {
     });
 }
 
-// function deleteNote(req, res) {
-//   Note.findByIdAndDelete(req.params.id)
-//     .then(() => {
-//       res.redirect("/notes");
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.redirect("/notes");
-//     });
-// }
 
 function show (req, res) {
   Note.findById(req.params.id)
-  .populate('owner')
-    .then((note, comments) => {
-      res.render("notes/show", { note, title: "Note", comments});
+  .populate({path: 'comments', populate: {path: 'owner'}})
+    .then((note) => {
+      res.render("notes/show", { note, title: "Note"});
     })
     .catch((err) => {
       console.log(err);
@@ -106,14 +108,7 @@ function update(req, res) {
   });
 }
 
-function createComment(req, res) {
-  Note.findById(req.params.id, function (err, note) {
-    note.comments.push(req.body);
-    note.save(function (err) {
-      res.redirect(`/notes/${note._id}`);
-    });
-  });
-}
+
 
 
 export {
