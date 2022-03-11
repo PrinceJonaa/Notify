@@ -7,11 +7,33 @@
   <div class="note">
     <p><%= note.content %></p>
   </div>
+  <% if (note.owner.equals(user?.profile._id)) { %>
   <form action="/notes/<%= note._id %>?_method=DELETE" method="POST">
     <button class="btn btn-primary" type="submit">Delete Note</button>
   </form>
+
+  <form action="/notes/<%= note._id %>/edit" method="GET">
+    <button class="btn btn-primary" type="submit">Edit Note</button>
+  </form>
+  <% } %>
+
+  <h3>Comments</h3>
+  <% note.forEach(note => { %>
+  <div class="comment">
+    <p><%= note.comment.content %></p>
+    <p><%= note.comment.ownerName %></p>
+  </div>
+  <% }) %>
+
+  <% if (user) { %>
+  <form action="/notes/<% note._id %>/comments " method="POST" id="add-comment">
+    <div class="form-group">
+      <label for="comment">Comment</label>
+      <textarea class="form-control" id="comment" name="comment" rows="1"></textarea>
+      <button class="btn btn-primary" type="submit">Add Comment</button>
+    </div>
+  </form>
+  <% } %>
 </section>
-
-
 
 <%- include('../partials/footer') %>

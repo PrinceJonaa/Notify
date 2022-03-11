@@ -17,8 +17,8 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title"><%= note.title %> </h5>
-          <h6 class="card-subtitle mb-2 text-muted">Created by <%= note.owner.name %></h6>
-          <p class="card-text"><%= note.bio %></p>
+          <h6 class="card-subtitle mb-2 text-muted">Created by <%= note.owner %></h6>
+          <p class="card-text">Note Description: <br> <%= note.content %></p>
           <a href="/notes/<%= note._id %>" class="card-link" method="GET">Show Note</a>
         </div>
       </div>

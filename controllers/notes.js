@@ -75,12 +75,44 @@ function show (req, res) {
   Note.findById(req.params.id)
   .populate('owner')
     .then((note) => {
-      res.render("notes/show", { note, title: "Note" });
+      res.render("notes/show", { note, title: "Note",});
     })
     .catch((err) => {
       console.log(err);
       res.redirect("/notes");
     });
+}
+
+function edit(req, res) {
+  Note.findById(req.params.id)
+    .then((note) => {
+      res.render("notes/edit", {
+        note,
+        title: 'Edit Note',
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect("/notes");
+    });
+}
+
+function update(req, res) {
+  for (let key in req.body) {
+    if (req.body[key] === "") delete req.body[key];
+  }
+  Note.findByIdAndUpdate(req.params.id, req.body, function (err, note) {
+    res.redirect(`/notes/${note._id}`);
+  });
+}
+
+function createComment(req, res) {
+  Note.findById(req.params.id, function (err, note) {
+    note.comments.push(req.body);
+    note.save(function (err) {
+      res.redirect(`/notes/${note._id}`);
+    });
+  });
 }
 
 
@@ -90,4 +122,7 @@ export {
   deleteNote as delete,
   show,
   newNote as new,
+  edit,
+  createComment, 
+  update, 
 }

@@ -4,7 +4,9 @@
 
 <%- include('../partials/nav') %>
 
+<div class="row mt-1">
 <% profiles.forEach(profile => { %>
+  <div class="col-md-4">
 <div class="card" style="width: 18rem;">
   <% if (profile.avatar) { %>
   <img src="<%= profile.avatar %>" alt="<%= profile.name %>'s avatar" class=" card-img-top" width="100" />
@@ -15,6 +17,8 @@
     <p class="card-text"><%= profile.name %>
     </p>
   </div>
+</div>
+</div>
   
   <% }) %>
 
