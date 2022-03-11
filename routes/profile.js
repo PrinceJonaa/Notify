@@ -6,6 +6,7 @@ const router = Router();
 
 router.get("/:id", isLoggedIn, profilesCtrl.show);
 router.get('/' , profilesCtrl.index);
+router.get('/:id' , isLoggedIn, profilesCtrl.show);
 
 
 

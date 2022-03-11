@@ -17,23 +17,26 @@
   </form>
   <% } %>
 
-  <h3>Comments</h3>
-  <% note.forEach(note => { %>
-  <div class="comment">
-    <p><%= note.comment.content %></p>
-    <p><%= note.comment.ownerName %></p>
-  </div>
-  <% }) %>
-
+  
   <% if (user) { %>
-  <form action="/notes/<% note._id %>/comments " method="POST" id="add-comment">
+  <form action="/notes/<% note._id %>/comments " method="POST" id="comment">
     <div class="form-group">
       <label for="comment">Comment</label>
-      <textarea class="form-control" id="comment" name="comment" rows="1"></textarea>
+      <textarea class="form-control" id="comment" name="content" rows="1"></textarea>
       <button class="btn btn-primary" type="submit">Add Comment</button>
     </div>
   </form>
   <% } %>
 </section>
+
+
+<h3>Comments</h3>
+<% note.comments.forEach(note => { %>
+<div class="comment">
+  <p><%= note.comments.content %></p>
+  <p><%= note.comments.ownerName %></p>
+</div>
+<% }) %>
+
 
 <%- include('../partials/footer') %>

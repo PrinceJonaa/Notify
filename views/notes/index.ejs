@@ -4,27 +4,33 @@
 <%- include('../partials/nav') %>
 
 <section>
-  <div class="container-md">
-    <h1> All Notes </h1>
-    <% if (user) { %>
-    <a href="/notes/new">Create a new note</a>
-    <% } %>
-  </div>
+  <div class="container py-5">
+    <header class="text-center">
+      <h1 class="display-4">All Notes</h1>
+      <p class="lead mb-0 font-italic"> List of all notes</p>
+      <p class="font-italic"><br>
+        <a href="/notes/new">
+          <u>Create a New Note</u>
+        </a>
+      </p>
+    </header>
 
-  <div class="row mt-1">
-    <% note.forEach(note => { %>
-    <div class="col-md-4">
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title"><%= note.title %> </h5>
-          <h6 class="card-subtitle mb-2 text-muted">Created by <%= note.owner %></h6>
-          <p class="card-text">Note Description: <br> <%= note.content %></p>
-          <a href="/notes/<%= note._id %>" class="card-link" method="GET">Show Note</a>
+    <div class="row py-5">
+      <div class="col-lg-7 mx-auto">
+        <% note.forEach(note => { %>
+        <div class="card shadow mb-4">
+          <div class="card-body p-5">
+            <h4 class="mb-4"><%= note.title %> </h4>
+            <h5 class="card-title"><%= note.title %> </h5>
+            <h6 class="card-subtitle mb-2 text-muted">Created by <%= note.owner %></h6>
+            <p class="card-text">Note Description: <br> <%= note.content %></p>
+            <a href="/notes/<%= note._id %>" class="card-link" method="GET">Show Note</a>
+          </div>
         </div>
+        <% }) %>
       </div>
     </div>
   </div>
-  <% }) %>
 
 </section>
 

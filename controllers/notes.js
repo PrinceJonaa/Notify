@@ -74,8 +74,8 @@ function deleteNote(req, res) {
 function show (req, res) {
   Note.findById(req.params.id)
   .populate('owner')
-    .then((note) => {
-      res.render("notes/show", { note, title: "Note",});
+    .then((note, comments) => {
+      res.render("notes/show", { note, title: "Note", comments});
     })
     .catch((err) => {
       console.log(err);
