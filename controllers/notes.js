@@ -3,6 +3,7 @@ import { Profile } from "../models/profile.js";
 
 function index(req, res) {
   Note.find({})
+  .populate('owner')
     .then((note) => {
       res.render("notes/index", {
         note,
@@ -75,7 +76,8 @@ function deleteNote(req, res) {
 
 function show (req, res) {
   Note.findById(req.params.id)
-  .populate({path: 'comments', populate: {path: 'owner'}})
+  .populate('owner')
+  .populate('comments.owner')
     .then((note) => {
       res.render("notes/show", { note, title: "Note"});
     })
@@ -88,10 +90,11 @@ function show (req, res) {
 function edit(req, res) {
   Note.findById(req.params.id)
     .then((note) => {
-      res.render("notes/edit", {
-        note,
-        title: 'Edit Note',
-      });
+      console.log(note)
+        res.render("notes/edit", {
+          note,
+          title: "Edit Note",
+        });
     })
     .catch((err) => {
       console.log(err);
@@ -99,16 +102,31 @@ function edit(req, res) {
     });
 }
 
+// function update(req, res) {
+//   for (let key in req.body) {
+//     if (req.body[key] === "") delete req.body[key];
+//   }
+//   Note.findByIdAndUpdate(req.params.id, req.body, function (err, note) {
+//     res.redirect(`/notes/${note._id}`);
+//   });
+// }
+
 function update(req, res) {
-  for (let key in req.body) {
-    if (req.body[key] === "") delete req.body[key];
-  }
-  Note.findByIdAndUpdate(req.params.id, req.body, function (err, note) {
-    res.redirect(`/notes/${note._id}`);
-  });
+  Note.findById(req.params.id)
+    .then((note) => {
+      if (note.owner.equals(req.user.profile._id)) {
+        note.updateOne(req.body, { new: true }).then(() => {
+          res.redirect(`/notes/${note._id}`);
+        });
+      } else {
+        throw new Error("🚫 Not authorized 🚫");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect(`/notes`);
+    });
 }
-
-
 
 
 export {

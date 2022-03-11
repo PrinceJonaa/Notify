@@ -33,7 +33,7 @@
 <h3>Comments</h3>
 <% note.comments.forEach(comment => { %>
 <div class="comment">
-  <p><%= comment.content %> - by anonymous</p>
+  <p><%= comment.content %> - by <%= comment.owner.name %> </p>
 </div>
 <% }) %>
 
