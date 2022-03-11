@@ -1,32 +1,62 @@
 <%- include('../partials/html-head') %>
+<link rel="stylesheet" href="/css/show.css">
 <%- include('../partials/nav') %>
 
 <section>
-  <h1><%= note.title %></h1>
-  <h4><%= note.owner.name %></h4>
-  <div class="note">
-    <p><%= note.content %></p>
-  </div>
-  <% if (note.owner.equals(user?.profile._id)) { %>
-  <form action="/notes/<%= note._id %>?_method=DELETE" method="POST">
-    <button class="btn btn-primary" type="submit">Delete Note</button>
-  </form>
-
-  <form action="/notes/<%= note._id %>/edit" method="GET">
-    <button class="btn btn-primary" type="submit">Edit Note</button>
-  </form>
-  <% } %>
-
-  
-  <% if (user) { %>
-  <form action="/notes/<%= note._id %>/comments" method="POST" id="comment-text">
-    <div class="form-group">
-      <label for="comment">Comment</label>
-      <textarea class="form-control" id="comment" name="content" rows="1"></textarea>
-      <button class="btn btn-primary" type="submit">Add Comment</button>
+  <div class="container mt-xl-5 mb-5">
+    <div class="d-flex justify-content-center pt-5">
+      <h2 class="font-weight-bold"><%= note.title %></h2>
     </div>
-  </form>
-  <% } %>
+    <div class="d-flex justify-content-center text-muted"><%= note.owner.name %></div>
+    <div class="d-md-flex flex-md-row justify-content-center py-4">
+      <div class="d-flex flex-row justify-content-center">
+        <form class="w-xl-50 w-lg-75">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-13">
+                <div class="form-group"> <label for="msg">Content</label>
+                  <div class="input-field bg-light"> <textarea name="message" id="msg" cols="10" rows="9"
+                      class="form-control bg-light"><%= note.content %></textarea> </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center">
+                <% if (note.owner.equals(user?.profile._id)) { %>
+
+
+
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <form action="/notes/<%= note._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-primary" type="submit">Delete Note</button>
+                      </form>
+                    </div>
+                    <div class="col">
+                      <form action="/notes/<%= note._id %>/edit" method="GET">
+                        <button class="btn btn-primary" type="submit">Edit Note</button>
+                      </form>
+
+                    </div>
+
+
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+        </form>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <% if (user) { %>
+      <form action="/notes/<%= note._id %>/comments" method="POST" id="comment-text">
+        <div class="form-group">
+          <label for="comment">Comment</label>
+          <textarea class="form-control" id="comment" name="content" rows="1"></textarea>
+          <button class="btn btn-primary" type="submit">Add Comment</button>
+        </div>
+      </form>
+      <% } %>
+    </div>
 </section>
 
 
