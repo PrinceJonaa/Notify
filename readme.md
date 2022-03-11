@@ -74,7 +74,7 @@ If you want to run the project locally and host your own server, you will need t
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get a free API Key at [https://notify-app-1.herokuapp.com](https://example.com)
 2. Clone the repo
 
    ```sh
@@ -154,9 +154,9 @@ Project Link: [https://github.com/PrinceJonaa/Notify](https://github.com/PrinceJ
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [Bootstrap]()
+* [My Gf]()
+* [Taco Cat]()
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
