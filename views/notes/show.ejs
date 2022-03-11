@@ -45,6 +45,16 @@
 </section>
 
 
+<section>
+  <% if (note.owner.equals(user?.profile._id)) { %>
+  <div class="container-fluid text-md-center">
+  <form action="/notes/<%= note._id %>?_method=DELETE" method="POST">
+    <button class="btn btn-primary" type="submit">Delete Note</button>
+  </form>
+  </div>
+  <% } %>
+</section>
+
 <div class="container mt-5 mb-5">
   <div class="row height d-flex justify-content-center align-items-center">
     <div class="col-md-7">
