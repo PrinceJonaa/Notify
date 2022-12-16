@@ -10,7 +10,6 @@ router.get('/:id', notesCtrl.show);
 router.get("/:id/edit", isLoggedIn, notesCtrl.edit);
 
 router.post("/new", isLoggedIn, notesCtrl.create);
-
 router.post("/:id/comments", isLoggedIn, notesCtrl.createComment);
 
 router.delete("/:id", isLoggedIn, notesCtrl.delete);
